@@ -1,0 +1,27 @@
+spring:
+  name: resume
+  ai:
+    ollama:
+      base-url: http://localhost:11434
+      chat:
+        model: "phi3:mini"
+  data:
+    mongodb:
+      host: localhost
+      port: 27017
+      database: resume_db
+      username: root
+      password: password
+      authentication-database: admin
+
+server:
+  port: 8081
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+  instance:
+    lease-renewal-interval-in-seconds: 10   # heartbeat every 10s
+    lease-expiration-duration-in-seconds: 30
+

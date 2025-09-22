@@ -8,6 +8,10 @@ spring:
         locator:
           enabled: false
       routes:
+        - id: resume
+          uri: http://localhost:8081
+          predicates:
+            - Path=/api/v1/resume/**
         - id: notification
           uri: http://localhost:8082
           predicates:

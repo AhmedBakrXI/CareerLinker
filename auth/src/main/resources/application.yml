@@ -1,6 +1,5 @@
 spring:
   application:
-    name: resume
+    name: auth
   config:
     import: optional:configserver:http://localhost:8888
-

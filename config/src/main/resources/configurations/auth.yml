@@ -1,0 +1,30 @@
+spring:
+  application:
+    name: auth
+    security:
+      jwt:
+        access-token-expiration-time: 6000000
+        refresh-token-expiration-time: 420000000
+        private-key-path: keys/local-only/privateKey.pem
+        public-key-path: keys/local-only/publicKey.pem
+  datasource:
+    url: jdbc:postgresql://localhost:5432/authDB
+    username: user
+    password: password
+  data:
+    redis:
+      host: localhost
+      port: 6379
+  cache:
+    type: redis
+
+server:
+  port: 9090
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+  instance:
+    lease-renewal-interval-in-seconds: 10   # heartbeat every 10s
+    lease-expiration-duration-in-seconds: 30

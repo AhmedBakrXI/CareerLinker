@@ -23,5 +23,23 @@ services:
       ME_CONFIG_MONGODB_ADMINPASSWORD: password
       ME_CONFIG_MONGODB_SERVER: mongo
 
+  postgres:
+    image: postgres
+    container_name: authDB
+    restart: always
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: authDB
+    volumes:
+      - postgres-data:/data/db
+
+  redis:
+    image: redis:8.0.3
+    ports:
+      - "6379:6379"
 volumes:
   mongo-data:
+  postgres-data:

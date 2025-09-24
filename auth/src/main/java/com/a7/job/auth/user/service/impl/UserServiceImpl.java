@@ -53,7 +53,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    @Cacheable(key = "#email")
+    @Cacheable(cacheNames = "userExists", key = "#email")
     public boolean existsByEmail(String email) {
         return userRepository.existsByEmail(email);
     }

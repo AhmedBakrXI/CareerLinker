@@ -17,6 +17,13 @@ spring:
       port: 6379
   cache:
     type: redis
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
 
 server:
   port: 9090

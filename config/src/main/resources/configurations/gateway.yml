@@ -4,18 +4,12 @@ spring:
 
   cloud:
     gateway:
-      discovery:
-        locator:
-          enabled: false
-      routes:
-        - id: resume
-          uri: http://localhost:8081
-          predicates:
-            - Path=/api/v1/resume/**
-        - id: notification
-          uri: http://localhost:8082
-          predicates:
-            - Path=/api/v1/notification/**
+      server:
+        webflux:
+          discovery:
+            locator:
+              enabled: true
+              lower-case-service-id: true
 
 eureka:
   client:
@@ -23,6 +17,13 @@ eureka:
       defaultZone: http://localhost:8761/eureka/
     register-with-eureka: true
     fetch-registry: true
+  instance:
+    lease-renewal-interval-in-seconds: 10   # heartbeat every 10s
+    lease-expiration-duration-in-seconds: 30
+    prefer-ip-address: true
+    hostname: localhost
+    instance-id: ${eureka.instance.hostname}:${server.port}
+    ip-address: 127.0.0.1
 
 server:
   port: 8080

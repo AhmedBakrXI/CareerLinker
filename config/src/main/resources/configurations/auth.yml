@@ -35,3 +35,7 @@ eureka:
   instance:
     lease-renewal-interval-in-seconds: 10   # heartbeat every 10s
     lease-expiration-duration-in-seconds: 30
+    prefer-ip-address: true
+    hostname: localhost
+    instance-id: ${eureka.instance.hostname}:${server.port}
+    ip-address: 127.0.0.1

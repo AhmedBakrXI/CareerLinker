@@ -1,5 +1,6 @@
 package com.a7.job.auth.security.service.impl;
 
+import com.a7.job.auth.logging.LogProducer;
 import com.a7.job.auth.security.dto.*;
 import com.a7.job.auth.security.enums.AuthStatus;
 import com.a7.job.auth.security.jwt.JwtService;
@@ -19,9 +20,11 @@ public class AuthServiceImpl implements AuthService {
     private final UserService userService;
     private final JwtService jwtService;
     private final PasswordValidator passwordValidator;
+    private final LogProducer logProducer;
 
     @Override
     public AuthResponse login(AuthRequest authRequest) {
+        logProducer.sendLog("Login attempt for email: " + authRequest.getEmail());
         Optional<UserModel> userModelOpt = userService.findByEmail(authRequest.getEmail());
         if (userModelOpt.isEmpty()) {
             return AuthResponse.builder()

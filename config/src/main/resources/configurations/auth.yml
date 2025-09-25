@@ -24,6 +24,8 @@ spring:
     properties:
       hibernate:
         format_sql: true
+  kafka:
+    bootstrap-servers: localhost:29092
 
 server:
   port: 9090

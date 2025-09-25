@@ -3,4 +3,11 @@ spring:
     name: resume
   config:
     import: optional:configserver:http://localhost:8888
-
+  ai:
+    openai:
+      api-key: ${GEMINI_API_KEY}
+      chat:
+        base-url: https://generativelanguage.googleapis.com
+        completions-path: /v1beta/openai/chat/completions
+        options:
+          model: gemini-2.0-flash

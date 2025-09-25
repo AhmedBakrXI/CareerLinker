@@ -17,7 +17,7 @@ public class AuthResponse {
     private String refreshToken;
 
     @JsonProperty("token_type")
-    private final static String TOKEN_TYPE = "Bearer";
+    private String tokenType;
 
     private AuthStatus status;
 }

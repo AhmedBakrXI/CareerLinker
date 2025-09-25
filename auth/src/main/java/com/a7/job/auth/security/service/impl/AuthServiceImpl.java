@@ -45,6 +45,7 @@ public class AuthServiceImpl implements AuthService {
         return AuthResponse.builder()
                 .accessToken(accessToken)
                 .refreshToken(refreshToken)
+                .tokenType("Bearer")
                 .status(AuthStatus.SUCCESS)
                 .build();
     }

@@ -1,6 +1,6 @@
 package com.a7.job.gateway.routes;
 
-import org.springframework.http.server.ServerHttpRequest;
+import org.springframework.http.server.reactive.ServerHttpRequest;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

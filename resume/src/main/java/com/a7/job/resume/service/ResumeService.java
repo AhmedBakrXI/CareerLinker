@@ -31,7 +31,7 @@ public class ResumeService {
                 "email": "string (email address)",
                 "phone": "string (phone number)",
                 "skills": ["string", "string", ...],
-                "years_of_experience": "string (total years of experience)",
+                "years_of_experience": "integer (total years of experience)",
                 "educations": [
                     {
                         "degree": "string (degree name)",
@@ -57,6 +57,8 @@ public class ResumeService {
             5. If information is missing, use empty values: "" for strings, [] for arrays
             6. NEVER add comments, explanations, or text outside the JSON object
             7. Ensure the output is valid JSON that can be parsed by Jackson
+            8. Try to infer missing details logically, but do not fabricate data
+            9. Try to guess years_of_experience based on listed experiences
             
             EXAMPLE OF EXPECTED OUTPUT:
             {
@@ -64,7 +66,7 @@ public class ResumeService {
                 "email": "john@email.com",
                 "phone": "+1234567890",
                 "skills": ["Java", "Spring Boot", "Python"],
-                "years_of_experience": "5",
+                "years_of_experience": 5,
                 "educations": [
                     {
                         "degree": "Bachelor of Computer Science",
@@ -157,8 +159,7 @@ public class ResumeService {
 
     private Optional<String> parseResumeToString(MultipartFile resumeFile) {
         String fileType = resumeFile.getContentType();
-        if (fileType == null ||
-                !(fileType.equals("application/pdf") || fileType.equals("application/msword"))) {
+        if (fileType == null || !fileType.equals("application/pdf")) {
             return Optional.empty();
         }
         try (InputStream is = resumeFile.getInputStream()) {
@@ -170,8 +171,6 @@ public class ResumeService {
             return Optional.empty();
         }
     }
-
-
 
 
 }
